@@ -15,6 +15,7 @@ import { Menu, X, Loader2 } from 'lucide-react';
 import { inventoryApi, transactionApi, purchaseApi, userApi } from './services/api';
 import { supabase } from './lib/supabaseClient';
 import { translations, Language } from './lib/i18n';
+import { ThemeProvider } from './lib/themeContext';
 
 const App: React.FC = () => {
   const [currentUser, setCurrentUser] = useState<UserProfile | null>(null);
@@ -102,34 +103,41 @@ const App: React.FC = () => {
 
   if (isAuthChecking) {
       return (
-          <div className="h-dvh w-screen flex flex-col items-center justify-center bg-black text-white gap-4">
-              <div className="w-12 h-12 rounded-full border-4 border-indigo-500/30 border-t-indigo-500 animate-spin"></div>
-              <p className="font-mono text-sm tracking-widest animate-pulse">ESTABLISHING UPLINK...</p>
-          </div>
+          <ThemeProvider>
+              <div className="h-dvh w-screen flex flex-col items-center justify-center bg-[var(--bg-primary)] text-[var(--text-primary)] gap-4">
+                  <div className="w-12 h-12 rounded-full border-4 border-indigo-500/30 border-t-indigo-500 animate-spin"></div>
+                  <p className="font-mono text-sm tracking-widest animate-pulse">ESTABLISHING UPLINK...</p>
+              </div>
+          </ThemeProvider>
       );
   }
 
   if (!currentUser) {
-    return <LoginScreen onLogin={(user) => setCurrentUser(user)} users={users} />;
+    return (
+      <ThemeProvider>
+        <LoginScreen onLogin={(user) => setCurrentUser(user)} users={users} />
+      </ThemeProvider>
+    );
   }
 
   const t = translations[language];
 
   return (
-    <div className="flex h-dvh w-screen overflow-hidden bg-transparent text-slate-200 animate-in fade-in duration-1000">
+    <ThemeProvider>
+      <div className="flex h-dvh w-screen overflow-hidden bg-[var(--bg-primary)] text-[var(--text-primary)] animate-in fade-in duration-1000">
       {mobileMenuOpen && (
         <div className="fixed inset-0 bg-black/90 backdrop-blur-lg z-40 md:hidden animate-in fade-in duration-200" onClick={() => setMobileMenuOpen(false)}></div>
       )}
       
-      <div className={`fixed inset-y-0 left-0 transform ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:relative md:translate-x-0 transition-transform duration-500 cubic-bezier(0.4, 0, 0.2, 1) z-50 bg-black md:bg-transparent w-72`}>
+      <div className={`fixed inset-y-0 left-0 transform ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:relative md:translate-x-0 transition-transform duration-500 cubic-bezier(0.4, 0, 0.2, 1) z-50 bg-[var(--bg-secondary)] md:bg-transparent w-72`}>
         <Sidebar currentView={view} setView={setView} currentUser={currentUser} onLogout={handleLogout} lang={language} t={t} />
       </div>
 
       <main className="flex-1 flex flex-col min-w-0 overflow-hidden relative md:perspective-[1000px]">
         
-        <div className="md:hidden glass-panel border-b border-white/10 p-4 flex items-center justify-between z-30 relative">
-           <div className="font-bold text-white font-[Space_Grotesk] tracking-wide text-glow text-xl">eSTORE</div>
-           <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2 text-slate-300 hover:bg-white/10 rounded-lg transition-colors">
+        <div className="md:hidden glass-panel border-b border-[var(--border-secondary)] p-4 flex items-center justify-between z-30 relative">
+           <div className="font-bold text-[var(--text-primary)] font-[Space_Grotesk] tracking-wide text-glow text-xl">eSTORE</div>
+           <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2 text-[var(--text-secondary)] hover:bg-[var(--bg-overlay)] rounded-lg transition-colors">
              {mobileMenuOpen ? <X /> : <Menu />}
            </button>
         </div>
@@ -168,7 +176,8 @@ const App: React.FC = () => {
           </div>
         </div>
       </main>
-    </div>
+      </div>
+    </ThemeProvider>
   );
 };
 

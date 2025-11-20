@@ -76,24 +76,24 @@ export const Purchase: React.FC<PurchaseProps> = ({
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-8">
         <div className="flex justify-between items-center">
-            <h2 className="text-3xl font-bold text-white">Purchase Orders</h2>
-            <button onClick={() => setIsModalOpen(true)} className="px-6 py-3 bg-blue-600 text-white font-bold rounded-xl flex items-center gap-2">
+            <h2 className="text-3xl font-bold text-[var(--text-primary)]">Purchase Orders</h2>
+            <button onClick={() => setIsModalOpen(true)} className="px-6 py-3 bg-blue-600 text-[var(--text-primary)] font-bold rounded-xl flex items-center gap-2">
                 <Plus className="w-5 h-5" /> New PO
             </button>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {purchaseOrders.map(po => (
-                <div key={po.id} className="glass-panel p-6 rounded-3xl border border-white/5 relative">
+                <div key={po.id} className="glass-panel p-6 rounded-3xl border border-[var(--border-secondary)] relative">
                      <div className="flex justify-between mb-4">
-                        <h3 className="font-bold text-white">{po.itemName}</h3>
-                        <span className="text-xs font-bold text-slate-400 px-2 py-1 bg-white/10 rounded">{po.status}</span>
+                        <h3 className="font-bold text-[var(--text-primary)]">{po.itemName}</h3>
+                        <span className="text-xs font-bold text-[var(--text-secondary)] px-2 py-1 bg-white/10 rounded">{po.status}</span>
                      </div>
-                     <div className="text-sm text-slate-400 mb-4">
+                     <div className="text-sm text-[var(--text-secondary)] mb-4">
                         Qty: {po.quantity} | Supplier: {po.supplier} | Cost: {formatCurrency(po.totalCost)}
                      </div>
                      {po.status === 'ORDERED' && (
-                         <button onClick={() => handleReceivePO(po)} disabled={isSaving} className="w-full py-2 bg-emerald-600 text-white font-bold rounded-lg">
+                         <button onClick={() => handleReceivePO(po)} disabled={isSaving} className="w-full py-2 bg-emerald-600 text-[var(--text-primary)] font-bold rounded-lg">
                             {isSaving ? "Processing..." : "Receive Stock"}
                          </button>
                      )}
@@ -103,17 +103,17 @@ export const Purchase: React.FC<PurchaseProps> = ({
 
         {isModalOpen && (
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-                <div className="absolute inset-0 bg-black/90" onClick={() => setIsModalOpen(false)}></div>
+                <div className="absolute inset-0 bg-[var(--bg-overlay)]" onClick={() => setIsModalOpen(false)}></div>
                 <div className="relative glass-panel p-8 rounded-3xl w-full max-w-lg bg-[#050505]">
-                    <h3 className="text-2xl font-bold text-white mb-6">Create Purchase Order</h3>
+                    <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-6">Create Purchase Order</h3>
                     <form onSubmit={handleCreatePO} className="space-y-4">
-                        <select required value={poItemId} onChange={e => setPoItemId(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white">
+                        <select required value={poItemId} onChange={e => setPoItemId(e.target.value)} className="w-full bg-[var(--bg-overlay)] border border-[var(--border-secondary)] rounded-xl px-4 py-3 text-[var(--text-primary)]">
                             <option value="">Select Item...</option>
                             {items.map(i => <option key={i.id} value={i.id}>{i.name} ({i.materialNo})</option>)}
                         </select>
-                        <input type="number" required value={poQty} onChange={e => setPoQty(parseInt(e.target.value))} className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white" placeholder="Quantity" />
-                        <input type="text" required value={poSupplier} onChange={e => setPoSupplier(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white" placeholder="Supplier" />
-                        <button type="submit" disabled={isSaving} className="w-full py-3 bg-blue-600 text-white font-bold rounded-xl">Create Order</button>
+                        <input type="number" required value={poQty} onChange={e => setPoQty(parseInt(e.target.value))} className="w-full bg-[var(--bg-overlay)] border border-[var(--border-secondary)] rounded-xl px-4 py-3 text-[var(--text-primary)]" placeholder="Quantity" />
+                        <input type="text" required value={poSupplier} onChange={e => setPoSupplier(e.target.value)} className="w-full bg-[var(--bg-overlay)] border border-[var(--border-secondary)] rounded-xl px-4 py-3 text-[var(--text-primary)]" placeholder="Supplier" />
+                        <button type="submit" disabled={isSaving} className="w-full py-3 bg-blue-600 text-[var(--text-primary)] font-bold rounded-xl">Create Order</button>
                     </form>
                 </div>
             </div>

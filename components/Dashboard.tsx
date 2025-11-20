@@ -158,12 +158,12 @@ export const Dashboard: React.FC<DashboardProps> = ({ items, transactions, lang,
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-[#0a0a0a]/95 border border-white/10 p-4 rounded-xl shadow-2xl backdrop-blur-xl z-50">
-          <p className="text-slate-400 text-xs mb-2 font-mono uppercase tracking-wider">{label}</p>
+        <div className="bg-[var(--bg-secondary)]/95 border border-[var(--border-primary)] p-4 rounded-xl shadow-2xl backdrop-blur-xl z-50">
+          <p className="text-[var(--text-secondary)] text-xs mb-2 font-mono uppercase tracking-wider">{label}</p>
           {payload.map((entry: any, index: number) => (
             <div key={index} className="flex items-center gap-3 mb-1">
               <div className="w-2 h-2 rounded-full" style={{backgroundColor: entry.color}}></div>
-              <p className="text-sm font-bold text-white">
+              <p className="text-sm font-bold text-[var(--text-primary)]">
                 {entry.name === 'inbound' ? 'Masuk' : entry.name === 'outbound' ? 'Keluar' : entry.name}: 
                 <span className="font-mono text-indigo-300 ml-2">
                     {/* Cek jika nilai berhubungan dengan uang, gunakan formatCurrency */}
@@ -187,10 +187,10 @@ export const Dashboard: React.FC<DashboardProps> = ({ items, transactions, lang,
       {/* HEADER */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-2">
         <div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight font-[Space_Grotesk] text-glow">
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] tracking-tight font-[Space_Grotesk] text-glow">
             eSTORE <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">{t.commandCenter}</span>
           </h2>
-          <div className="flex items-center gap-3 mt-2 text-sm text-slate-400">
+          <div className="flex items-center gap-3 mt-2 text-sm text-[var(--text-secondary)]">
             <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
                 <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span>
                 Live Warehouse Data
@@ -204,7 +204,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ items, transactions, lang,
            <div className="glass-panel flex-1 md:flex-none px-5 py-3 rounded-2xl flex items-center gap-3 border-indigo-500/20">
               <div className="p-2 bg-indigo-500/20 rounded-lg text-indigo-400"><Cpu className="w-5 h-5" /></div>
               <div className="text-xs">
-                <p className="text-slate-400 font-bold uppercase">Total SKUs</p>
+                <p className="text-[var(--text-secondary)] font-bold uppercase">Total SKUs</p>
                 <p className="text-emerald-400 font-mono font-bold">{stats.uniqueMaterialCount} Items</p>
               </div>
            </div>
@@ -219,9 +219,9 @@ export const Dashboard: React.FC<DashboardProps> = ({ items, transactions, lang,
                 <DollarSign className="w-24 h-24 text-indigo-400" />
             </div>
             <div className="relative z-10">
-                <p className="text-slate-400 text-xs font-bold uppercase tracking-widest">{t.assetValue}</p>
+                <p className="text-[var(--text-secondary)] text-xs font-bold uppercase tracking-widest">{t.assetValue}</p>
                 {/* Menggunakan formatCurrency (Rp) */}
-                <h3 className="text-2xl xl:text-3xl font-bold text-white mt-2 font-[Space_Grotesk] truncate">{formatCurrency(stats.totalValue)}</h3>
+                <h3 className="text-2xl xl:text-3xl font-bold text-[var(--text-primary)] mt-2 font-[Space_Grotesk] truncate">{formatCurrency(stats.totalValue)}</h3>
                 <div className="mt-4 flex items-center gap-2">
                     <span className="bg-indigo-500/10 text-indigo-400 text-xs font-bold px-2 py-1 rounded-lg border border-indigo-500/20 flex items-center gap-1">
                         <Activity className="w-3 h-3" /> Real-time Valuation
@@ -237,12 +237,12 @@ export const Dashboard: React.FC<DashboardProps> = ({ items, transactions, lang,
                 <Activity className="w-24 h-24 text-emerald-400" />
             </div>
             <div className="relative z-10">
-                <p className="text-slate-400 text-xs font-bold uppercase tracking-widest">Inventory Health</p>
-                <h3 className="text-2xl xl:text-3xl font-bold text-white mt-2 font-[Space_Grotesk]">{stats.stockHealth}%</h3>
-                <div className="w-full bg-white/10 h-1.5 mt-4 rounded-full overflow-hidden">
+                <p className="text-[var(--text-secondary)] text-xs font-bold uppercase tracking-widest">Inventory Health</p>
+                <h3 className="text-2xl xl:text-3xl font-bold text-[var(--text-primary)] mt-2 font-[Space_Grotesk]">{stats.stockHealth}%</h3>
+                <div className="w-full bg-[var(--bg-overlay)] h-1.5 mt-4 rounded-full overflow-hidden">
                     <div className={`h-full rounded-full transition-all duration-1000 ${stats.stockHealth > 80 ? 'bg-emerald-500' : stats.stockHealth > 50 ? 'bg-amber-500' : 'bg-rose-500'}`} style={{width: `${stats.stockHealth}%`}}></div>
                 </div>
-                <p className="text-slate-500 text-xs mt-2">{stats.lowStockCount} items below minimum</p>
+                <p className="text-[var(--text-tertiary)] text-xs mt-2">{stats.lowStockCount} items below minimum</p>
             </div>
             <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 to-teal-500"></div>
         </div>
@@ -253,10 +253,10 @@ export const Dashboard: React.FC<DashboardProps> = ({ items, transactions, lang,
                 <Package className="w-24 h-24 text-blue-400" />
             </div>
             <div className="relative z-10">
-                <p className="text-slate-400 text-xs font-bold uppercase tracking-widest">{t.totalStock}</p>
+                <p className="text-[var(--text-secondary)] text-xs font-bold uppercase tracking-widest">{t.totalStock}</p>
                 {/* Angka dihitung dari banyaknya material_no */}
-                <h3 className="text-2xl xl:text-3xl font-bold text-white mt-2 font-[Space_Grotesk]">{stats.uniqueMaterialCount.toLocaleString()}</h3>
-                <p className="text-slate-500 text-xs mt-4">Unique Materials / SKUs</p>
+                <h3 className="text-2xl xl:text-3xl font-bold text-[var(--text-primary)] mt-2 font-[Space_Grotesk]">{stats.uniqueMaterialCount.toLocaleString()}</h3>
+                <p className="text-[var(--text-tertiary)] text-xs mt-4">Unique Materials / SKUs</p>
             </div>
             <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-cyan-500"></div>
         </div>
@@ -267,10 +267,10 @@ export const Dashboard: React.FC<DashboardProps> = ({ items, transactions, lang,
                 <AlertCircle className="w-24 h-24 text-rose-400" />
             </div>
             <div className="relative z-10">
-                <p className="text-rose-300 text-xs font-bold uppercase tracking-widest">Est. Restock Cost</p>
+                <p className="text-rose-400 dark:text-rose-300 text-xs font-bold uppercase tracking-widest">Est. Restock Cost</p>
                 {/* Menggunakan formatCurrency (Rp) */}
-                <h3 className="text-2xl xl:text-3xl font-bold text-white mt-2 font-[Space_Grotesk]">{formatCurrency(stats.restockCostEstimates)}</h3>
-                <p className="text-rose-300/70 text-xs mt-4">To restore min levels</p>
+                <h3 className="text-2xl xl:text-3xl font-bold text-[var(--text-primary)] mt-2 font-[Space_Grotesk]">{formatCurrency(stats.restockCostEstimates)}</h3>
+                <p className="text-rose-400 dark:text-rose-300/70 text-xs mt-4">To restore min levels</p>
             </div>
             <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-rose-500 to-orange-500"></div>
         </div>
@@ -283,13 +283,13 @@ export const Dashboard: React.FC<DashboardProps> = ({ items, transactions, lang,
         <div className="lg:col-span-2 space-y-6">
             
             {/* Flow Analytics Chart */}
-            <div className="glass-panel p-6 rounded-3xl relative overflow-hidden border border-white/5">
+            <div className="glass-panel p-6 rounded-3xl relative overflow-hidden border border-[var(--border-secondary)]">
                 <div className="flex justify-between items-center mb-6">
                     <div>
-                        <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                        <h3 className="text-lg font-bold text-[var(--text-primary)] flex items-center gap-2">
                             <Activity className="w-5 h-5 text-indigo-400" /> {t.flowAnalytics}
                         </h3>
-                        <p className="text-xs text-slate-500">Volume In/Out (Last 7 Days)</p>
+                        <p className="text-xs text-[var(--text-tertiary)]">Volume In/Out (Last 7 Days)</p>
                     </div>
                     <div className="flex gap-3 text-xs font-bold">
                         <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-indigo-500"></span> Inbound</div>
@@ -309,9 +309,9 @@ export const Dashboard: React.FC<DashboardProps> = ({ items, transactions, lang,
                             <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
                         </linearGradient>
                         </defs>
-                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
-                        <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 10}} dy={10} />
-                        <YAxis axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 10}} />
+                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border-secondary)" />
+                        <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: 'var(--text-tertiary)', fontSize: 10}} dy={10} />
+                        <YAxis axisLine={false} tickLine={false} tick={{fill: 'var(--text-tertiary)', fontSize: 10}} />
                         <Tooltip content={<CustomTooltip />} cursor={{stroke: 'rgba(255,255,255,0.1)', strokeWidth: 1}} />
                         <Area type="monotone" dataKey="inbound" stroke="#6366f1" strokeWidth={3} fillOpacity={1} fill="url(#colorIn)" />
                         <Area type="monotone" dataKey="outbound" stroke="#10b981" strokeWidth={3} fillOpacity={1} fill="url(#colorOut)" />
@@ -324,16 +324,16 @@ export const Dashboard: React.FC<DashboardProps> = ({ items, transactions, lang,
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
                 {/* Stockout Prediction */}
-                <div className="glass-panel p-6 rounded-3xl border border-white/5">
+                <div className="glass-panel p-6 rounded-3xl border border-[var(--border-secondary)]">
                     <div className="flex items-center gap-2 mb-4">
                         <Hourglass className="w-5 h-5 text-amber-400" />
-                        <h3 className="text-lg font-bold text-white">Risk Forecast</h3>
+                        <h3 className="text-lg font-bold text-[var(--text-primary)]">Risk Forecast</h3>
                     </div>
                     <div className="space-y-3">
                         {riskItems.map((item, idx) => (
                             <div key={idx} className="flex items-center justify-between p-3 bg-amber-500/5 border border-amber-500/10 rounded-xl">
                                 <div>
-                                    <p className="text-sm font-bold text-white truncate max-w-[120px]">{item.name}</p>
+                                    <p className="text-sm font-bold text-[var(--text-primary)] truncate max-w-[120px]">{item.name}</p>
                                     <p className="text-[10px] text-slate-400">Usage: {item.avgDailyUsage.toFixed(1)} / day</p>
                                 </div>
                                 <div className="text-right">
@@ -352,21 +352,21 @@ export const Dashboard: React.FC<DashboardProps> = ({ items, transactions, lang,
                 </div>
 
                 {/* Slow Moving Items */}
-                <div className="glass-panel p-6 rounded-3xl border border-white/5">
+                <div className="glass-panel p-6 rounded-3xl border border-[var(--border-secondary)]">
                     <div className="flex items-center gap-2 mb-4">
-                        <TrendingDown className="w-5 h-5 text-slate-400" />
-                        <h3 className="text-lg font-bold text-white">Slow Moving</h3>
+                        <TrendingDown className="w-5 h-5 text-[var(--text-secondary)]" />
+                        <h3 className="text-lg font-bold text-[var(--text-primary)]">Slow Moving</h3>
                     </div>
                     <div className="space-y-3">
                         {slowMovingItems.map((item, idx) => (
-                            <div key={idx} className="flex items-center justify-between p-3 bg-white/5 border border-white/5 rounded-xl">
+                            <div key={idx} className="flex items-center justify-between p-3 bg-[var(--bg-overlay)] border border-[var(--border-secondary)] rounded-xl">
                                 <div>
-                                    <p className="text-sm font-bold text-slate-300 truncate max-w-[150px]">{item.name}</p>
-                                    <p className="text-[10px] text-slate-500">SLOC: {item.sloc}</p>
+                                    <p className="text-sm font-bold text-[var(--text-primary)] truncate max-w-[150px]">{item.name}</p>
+                                    <p className="text-[10px] text-[var(--text-tertiary)]">SLOC: {item.sloc}</p>
                                 </div>
                                 <div className="text-right">
-                                    <p className="text-sm font-bold text-white font-mono">{item.quantity}</p>
-                                    <p className="text-[10px] text-slate-500">Idle Units</p>
+                                    <p className="text-sm font-bold text-[var(--text-primary)] font-mono">{item.quantity}</p>
+                                    <p className="text-[10px] text-[var(--text-tertiary)]">Idle Units</p>
                                 </div>
                             </div>
                         ))}
@@ -381,23 +381,23 @@ export const Dashboard: React.FC<DashboardProps> = ({ items, transactions, lang,
             </div>
 
             {/* Asset Value by Category (Financial Bar Chart) */}
-            <div className="glass-panel p-6 rounded-3xl border border-white/5 relative">
+            <div className="glass-panel p-6 rounded-3xl border border-[var(--border-secondary)] relative">
                 <div className="flex items-center gap-2 mb-6">
                     <Wallet className="w-5 h-5 text-emerald-400" />
                     <div>
-                        <h3 className="text-lg font-bold text-white">Capital Distribution</h3>
-                        <p className="text-xs text-slate-500">Asset Value by Category</p>
+                        <h3 className="text-lg font-bold text-[var(--text-primary)]">Capital Distribution</h3>
+                        <p className="text-xs text-[var(--text-tertiary)]">Asset Value by Category</p>
                     </div>
                 </div>
                 <div className="h-[200px]">
                      <ResponsiveContainer width="100%" height="100%">
                         <BarChart data={categoryValueData}>
-                            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
-                            <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 10}} dy={10} />
-                            <YAxis axisLine={false} tickLine={false} tickFormatter={(val) => `${(val/1000000).toFixed(0)}M`} tick={{fill: '#64748b', fontSize: 10}} />
-                            <Tooltip 
+                            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border-secondary)" />
+                            <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: 'var(--text-tertiary)', fontSize: 10}} dy={10} />
+                            <YAxis axisLine={false} tickLine={false} tickFormatter={(val) => `${(val/1000000).toFixed(0)}M`} tick={{fill: 'var(--text-tertiary)', fontSize: 10}} />
+                            <Tooltip
                                 cursor={{fill: 'rgba(255,255,255,0.05)'}}
-                                contentStyle={{backgroundColor: '#0a0a0a', borderColor: '#333', borderRadius: '12px'}}
+                                contentStyle={{backgroundColor: 'var(--bg-secondary)', borderColor: 'var(--border-primary)', borderRadius: '12px'}}
                                 formatter={(value: number) => [formatCurrency(value), 'Value']}
                             />
                             <Bar dataKey="value" fill="#10b981" radius={[4, 4, 0, 0]} barSize={40}>
@@ -415,10 +415,10 @@ export const Dashboard: React.FC<DashboardProps> = ({ items, transactions, lang,
         <div className="space-y-6">
             
             {/* Composition Pie Chart */}
-            <div className="glass-panel p-6 rounded-3xl border border-white/5 relative overflow-hidden">
+            <div className="glass-panel p-6 rounded-3xl border border-[var(--border-secondary)] relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 blur-[60px] rounded-full"></div>
-                <h3 className="text-lg font-bold text-white mb-2">{t.composition}</h3>
-                <p className="text-xs text-slate-500 mb-6">Quantity Distribution</p>
+                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-2">{t.composition}</h3>
+                <p className="text-xs text-[var(--text-tertiary)] mb-6">Quantity Distribution</p>
                 <div className="h-[220px] relative">
                      <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
@@ -428,15 +428,15 @@ export const Dashboard: React.FC<DashboardProps> = ({ items, transactions, lang,
                             ))}
                             </Pie>
                             <Tooltip content={<CustomTooltip />} />
-                            <Legend verticalAlign="bottom" height={36} iconType="circle" formatter={(value) => <span className="text-slate-400 text-[10px] font-mono ml-1">{value}</span>} />
+                            <Legend verticalAlign="bottom" height={36} iconType="circle" formatter={(value) => <span className="text-[var(--text-secondary)] text-[10px] font-mono ml-1">{value}</span>} />
                         </PieChart>
                     </ResponsiveContainer>
                 </div>
             </div>
 
             {/* Top Movers (Fast Moving Items) */}
-            <div className="glass-panel p-6 rounded-3xl border border-white/5">
-                 <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+            <div className="glass-panel p-6 rounded-3xl border border-[var(--border-secondary)]">
+                 <h3 className="text-lg font-bold text-[var(--text-primary)] mb-4 flex items-center gap-2">
                      <Zap className="w-5 h-5 text-yellow-400" /> Top Movers
                  </h3>
                  <div className="space-y-4">
@@ -445,41 +445,43 @@ export const Dashboard: React.FC<DashboardProps> = ({ items, transactions, lang,
                              <span className="text-xs font-bold text-slate-600 w-4">0{idx+1}</span>
                              <div className="flex-1">
                                  <div className="flex justify-between mb-1">
-                                     <span className="text-xs text-white font-bold truncate max-w-[120px]">{item.name}</span>
+                                     <span className="text-xs text-[var(--text-primary)] font-bold truncate max-w-[120px]">{item.name}</span>
                                      <span className="text-xs text-yellow-400 font-mono">{item.count} units</span>
                                  </div>
-                                 <div className="w-full bg-white/10 h-1 rounded-full overflow-hidden">
-                                     <div className="bg-yellow-500 h-full rounded-full" style={{width: `${(item.count / (topMovers[0]?.count || 1)) * 100}%`}}></div>
+                                 <div className="w-full bg-[var(--bg-overlay)] h-1 rounded-full overflow-hidden">
+                                     <div className="bg-yellow-500 h-full rounded-full" style={{"width": `${(item.count / (topMovers[0]?.count || 1)) * 100}%`}}></div>
                                  </div>
                              </div>
                          </div>
                      ))}
-                     {topMovers.length === 0 && <p className="text-slate-500 text-xs text-center">No transaction data available.</p>}
+                     {topMovers.length === 0 && (
+                       <p className="text-[var(--text-tertiary)] text-xs text-center">No transaction data available.</p>
+                     )}
                  </div>
             </div>
 
             {/* Warehouse Status Summary */}
-            <div className="glass-panel p-6 rounded-3xl border border-white/5 bg-gradient-to-br from-indigo-900/20 to-purple-900/20">
-                <h3 className="text-lg font-bold text-white mb-4">Warehouse Status</h3>
+            <div className="glass-panel p-6 rounded-3xl border border-[var(--border-secondary)] bg-gradient-to-br from-indigo-900/20 to-purple-900/20 dark:from-indigo-900/20 dark:to-purple-900/20 from-indigo-100/20 to-purple-100/20">
+                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-4">Warehouse Status</h3>
                 <div className="flex items-center gap-4 mb-4">
                     <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30">
                         <CheckCircle2 className="w-6 h-6 text-emerald-400" />
                     </div>
                     <div>
-                        <p className="text-sm text-white font-bold">Operational</p>
+                        <p className="text-sm text-[var(--text-primary)] font-bold">Operational</p>
                         {/* REVISI: Menampilkan jumlah item unik, bukan total fisik jika itu yang diinginkan di sini juga, tapi biasanya Operational tracking items count is fine */}
-                        <p className="text-xs text-slate-400">Tracking {stats.uniqueMaterialCount} active materials</p>
+                        <p className="text-xs text-[var(--text-secondary)]">Tracking {stats.uniqueMaterialCount} active materials</p>
                     </div>
                 </div>
                 <div className="grid grid-cols-2 gap-2">
-                    <div className="bg-black/30 p-2 rounded-lg text-center">
-                         <p className="text-[10px] text-slate-500 uppercase">Inbound (7d)</p>
+                    <div className="bg-[var(--bg-overlay)] p-2 rounded-lg text-center">
+                         <p className="text-[10px] text-[var(--text-tertiary)] uppercase">Inbound (7d)</p>
                          <p className="text-emerald-400 font-mono font-bold text-sm">
                             {chartData.reduce((acc, d) => acc + d.inbound, 0)}
                          </p>
                     </div>
-                    <div className="bg-black/30 p-2 rounded-lg text-center">
-                         <p className="text-[10px] text-slate-500 uppercase">Outbound (7d)</p>
+                    <div className="bg-[var(--bg-overlay)] p-2 rounded-lg text-center">
+                         <p className="text-[10px] text-[var(--text-tertiary)] uppercase">Outbound (7d)</p>
                          <p className="text-blue-400 font-mono font-bold text-sm">
                             {chartData.reduce((acc, d) => acc + d.outbound, 0)}
                          </p>

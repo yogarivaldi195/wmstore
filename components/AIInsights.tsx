@@ -22,12 +22,12 @@ export const AIInsights: React.FC<AIInsightsProps> = ({ items, userRole }) => {
   if (userRole !== 'ADMIN') {
     return (
       <div className="h-[80vh] flex items-center justify-center md:perspective-[1000px]">
-        <div className="card-3d bg-black/40 border border-red-500/30 rounded-3xl p-12 text-center max-w-lg relative overflow-hidden">
+        <div className="card-3d bg-[var(--bg-overlay)] border border-red-500/30 rounded-3xl p-12 text-center max-w-lg relative overflow-hidden">
           <div className="absolute inset-0 bg-red-500/5 animate-pulse"></div>
           <div className="w-24 h-24 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-red-500/20 shadow-[0_0_40px_rgba(220,38,38,0.3)]">
             <ShieldAlert className="w-12 h-12 text-red-500" />
           </div>
-          <h2 className="text-2xl font-bold text-white font-[Space_Grotesk] tracking-widest">ACCESS DENIED</h2>
+          <h2 className="text-2xl font-bold text-[var(--text-primary)] font-[Space_Grotesk] tracking-widest">ACCESS DENIED</h2>
           <p className="text-red-400/80 mt-4 font-mono text-sm">
             SECURITY LEVEL INSUFFICIENT.<br/>
             AI CORE INTELLIGENCE IS RESTRICTED TO ADMIN PERSONNEL.
@@ -47,11 +47,11 @@ export const AIInsights: React.FC<AIInsightsProps> = ({ items, userRole }) => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div className="relative">
            <div className="absolute -left-6 -top-6 w-20 h-20 bg-purple-600/30 blur-2xl rounded-full"></div>
-           <h2 className="relative z-10 text-3xl md:text-4xl font-bold text-white tracking-tight font-[Space_Grotesk] flex items-center gap-3 text-glow">
+           <h2 className="relative z-10 text-3xl md:text-4xl font-bold text-[var(--text-primary)] tracking-tight font-[Space_Grotesk] flex items-center gap-3 text-glow">
             <Sparkles className="w-8 h-8 text-purple-400 animate-spin-slow" />
             eSTORE <span className="text-purple-500">Intelligence</span>
           </h2>
-          <p className="relative z-10 text-slate-400 mt-2 font-mono">Gemini Neural Core // v1.5 Pro</p>
+          <p className="relative z-10 text-[var(--text-secondary)] mt-2 font-mono">Gemini Neural Core // v1.5 Pro</p>
         </div>
         
         <button
@@ -66,7 +66,7 @@ export const AIInsights: React.FC<AIInsightsProps> = ({ items, userRole }) => {
       </div>
 
       {!analysis && !loading && (
-        <div className="glass-panel rounded-3xl p-12 md:p-32 text-center border border-white/10 relative overflow-hidden md:perspective-[1000px]">
+        <div className="glass-panel rounded-3xl p-12 md:p-32 text-center border border-[var(--border-secondary)] relative overflow-hidden md:perspective-[1000px]">
           {/* Holographic Grid Floor */}
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none"></div>
           
@@ -76,8 +76,8 @@ export const AIInsights: React.FC<AIInsightsProps> = ({ items, userRole }) => {
                  <ScanLine className="w-10 h-10 text-purple-300" />
               </div>
             </div>
-            <h3 className="text-2xl font-bold text-white tracking-wide font-[Space_Grotesk]">AWAITING DATA INPUT</h3>
-            <p className="text-slate-400 max-w-md mx-auto mt-4 leading-relaxed">
+            <h3 className="text-2xl font-bold text-[var(--text-primary)] tracking-wide font-[Space_Grotesk]">AWAITING DATA INPUT</h3>
+            <p className="text-[var(--text-secondary)] max-w-md mx-auto mt-4 leading-relaxed">
               Connect to the neural network to analyze <span className="text-purple-400 font-bold">{items.length} data points</span> for optimization vectors.
             </p>
           </div>
@@ -92,7 +92,7 @@ export const AIInsights: React.FC<AIInsightsProps> = ({ items, userRole }) => {
              <div className="absolute inset-0 border-4 border-t-purple-500 border-r-purple-500 border-b-transparent border-l-transparent rounded-full animate-spin shadow-[0_0_30px_rgba(168,85,247,0.5)]"></div>
              <Disc className="absolute inset-0 m-auto w-12 h-12 text-purple-400 animate-spin-slow opacity-50" />
           </div>
-          <h3 className="text-2xl font-bold text-white animate-pulse font-mono tracking-widest">ANALYZING</h3>
+          <h3 className="text-2xl font-bold text-[var(--text-primary)] animate-pulse font-mono tracking-widest">ANALYZING</h3>
           <div className="flex justify-center gap-1 mt-4">
             <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{animationDelay: '0ms'}}></div>
             <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{animationDelay: '150ms'}}></div>
@@ -112,9 +112,9 @@ export const AIInsights: React.FC<AIInsightsProps> = ({ items, userRole }) => {
             <div className="relative z-10">
               <div className="flex items-center gap-4 mb-6">
                 <div className="p-3 bg-indigo-500 rounded-xl shadow-[0_0_20px_rgba(99,102,241,0.6)] animate-float">
-                   <CheckCircle className="w-6 h-6 text-white" />
+                   <CheckCircle className="w-6 h-6 text-[var(--text-primary)]" />
                 </div>
-                <h3 className="text-2xl font-bold text-white font-[Space_Grotesk]">Executive AI Analysis</h3>
+                <h3 className="text-2xl font-bold text-[var(--text-primary)] font-[Space_Grotesk]">Executive AI Analysis</h3>
               </div>
               <div className="p-6 bg-indigo-950/30 rounded-2xl border border-indigo-500/20">
                  <p className="text-indigo-100 leading-relaxed text-lg font-light">
@@ -138,7 +138,7 @@ export const AIInsights: React.FC<AIInsightsProps> = ({ items, userRole }) => {
                  </li>
                ))}
                {analysis.warnings.length === 0 && (
-                 <li className="text-slate-500 italic flex items-center gap-2">
+                 <li className="text-[var(--text-tertiary)] italic flex items-center gap-2">
                    <CheckCircle className="w-4 h-4" /> System optimal. No anomalies.
                  </li>
                )}

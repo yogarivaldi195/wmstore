@@ -106,24 +106,24 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
     // UPDATED: items-center on all screens (centered modal)
     <div className="fixed inset-0 z-[999] flex items-center justify-center p-4">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onClick={onClose}></div>
+      <div className="absolute inset-0 bg-[var(--bg-overlay)] backdrop-blur-sm transition-opacity" onClick={onClose}></div>
       
       {/* Modal Container - Centered & Zoom Animation */}
       <div className="relative w-full md:max-w-5xl h-[95vh] md:h-auto md:max-h-[90vh] glass-panel bg-[#050505] rounded-[2rem] md:rounded-3xl border border-indigo-500/20 shadow-2xl z-50 flex flex-col animate-in zoom-in-95 duration-300">
         
         {/* Header (Sticky) */}
-        <div className="flex justify-between items-center p-6 border-b border-white/10 bg-[#050505]/95 backdrop-blur-md rounded-t-[2rem] md:rounded-t-3xl z-20 shrink-0">
+        <div className="flex justify-between items-center p-6 border-b border-[var(--border-secondary)] bg-[#050505]/95 backdrop-blur-md rounded-t-[2rem] md:rounded-t-3xl z-20 shrink-0">
             <div>
-                <h3 className="text-xl md:text-2xl font-bold text-white font-[Space_Grotesk]">
+                <h3 className="text-xl md:text-2xl font-bold text-[var(--text-primary)] font-[Space_Grotesk]">
                   {initialData ? t.updateEntry : t.createEntry}
                 </h3>
-                <p className="text-xs text-slate-400 font-mono mt-1 hidden md:block">
+                <p className="text-xs text-[var(--text-secondary)] font-mono mt-1 hidden md:block">
                     {initialData ? "Modify existing material parameters" : "Register new material to database"}
                 </p>
             </div>
             <button 
                 onClick={onClose} 
-                className="p-2 bg-white/5 hover:bg-white/10 rounded-full text-slate-400 hover:text-white transition-colors"
+                className="p-2 bg-white/5 hover:bg-white/10 rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
             >
                 <X className="w-6 h-6" />
             </button>
@@ -134,18 +134,18 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
             <form id="inventory-form" onSubmit={handleSubmit} className="space-y-6">
                 
                 {/* Section 1: Identification */}
-                <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-5">
+                <div className="bg-white/[0.02] border border-[var(--border-secondary)] rounded-2xl p-5">
                     <h4 className="text-indigo-400 font-bold uppercase tracking-widest text-xs mb-6 flex items-center gap-2">
                         <FileText className="w-4 h-4" /> Identification
                     </h4>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div className="md:col-span-2">
-                            <label className="text-xs font-bold text-slate-500 uppercase mb-2 block">Material Description</label>
+                            <label className="text-xs font-bold text-[var(--text-tertiary)] uppercase mb-2 block">Material Description</label>
                             <div className="flex gap-2">
                                 <input 
                                     type="text" required 
                                     value={name} onChange={e => setName(e.target.value)} 
-                                    className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3.5 text-white outline-none focus:border-indigo-500 transition-colors placeholder:text-slate-700" 
+                                    className="w-full bg-[var(--bg-overlay)] border border-[var(--border-secondary)] rounded-xl px-4 py-3.5 text-[var(--text-primary)] outline-none focus:border-indigo-500 transition-colors placeholder:text-slate-700" 
                                     placeholder="Ex: Hydraulic Pump 500W"
                                 />
                                 <button 
@@ -159,14 +159,14 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
                             </div>
                         </div>
                         <div>
-                            <label className="text-xs font-bold text-slate-500 uppercase mb-2 block">Material No (PK)</label>
+                            <label className="text-xs font-bold text-[var(--text-tertiary)] uppercase mb-2 block">Material No (PK)</label>
                             <div className="relative">
-                                <ScanLine className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600" />
+                                <ScanLine className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--text-tertiary)]" />
                                 <input 
                                     type="text" required 
                                     disabled={!!initialData} 
                                     value={materialNo} onChange={e => setMaterialNo(e.target.value)} 
-                                    className="w-full bg-black/50 border border-white/10 rounded-xl pl-10 pr-4 py-3.5 text-white outline-none font-mono disabled:opacity-50 disabled:cursor-not-allowed focus:border-indigo-500" 
+                                    className="w-full bg-[var(--bg-overlay)] border border-[var(--border-secondary)] rounded-xl pl-10 pr-4 py-3.5 text-[var(--text-primary)] outline-none font-mono disabled:opacity-50 disabled:cursor-not-allowed focus:border-indigo-500" 
                                     placeholder="MAT-XXXX" 
                                 />
                             </div>
@@ -176,52 +176,52 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
 
                 {/* Section 2: Classification & Procurement */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-5">
+                      <div className="bg-white/[0.02] border border-[var(--border-secondary)] rounded-2xl p-5">
                         <h4 className="text-emerald-400 font-bold uppercase tracking-widest text-xs mb-6 flex items-center gap-2">
                             <Layers className="w-4 h-4" /> Classification
                         </h4>
                         <div className="grid grid-cols-2 gap-4">
                             <div className="col-span-2 md:col-span-1">
-                                <label className="text-xs font-bold text-slate-500 uppercase mb-2 block">Operational Class</label>
-                                <select value={category} onChange={e => setCategory(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3.5 text-white outline-none appearance-none focus:border-emerald-500">
+                                <label className="text-xs font-bold text-[var(--text-tertiary)] uppercase mb-2 block">Operational Class</label>
+                                <select value={category} onChange={e => setCategory(e.target.value)} className="w-full bg-[var(--bg-overlay)] border border-[var(--border-secondary)] rounded-xl px-4 py-3.5 text-[var(--text-primary)] outline-none appearance-none focus:border-emerald-500">
                                     {Object.values(ItemCategory).map(c => <option key={c} value={c}>{c}</option>)}
                                 </select>
                             </div>
                             <div className="col-span-2 md:col-span-1">
-                                <label className="text-xs font-bold text-slate-500 uppercase mb-2 block">Unit (UoM)</label>
-                                <input type="text" value={uom} onChange={e => setUom(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3.5 text-white outline-none focus:border-emerald-500" placeholder="PCS" />
+                                <label className="text-xs font-bold text-[var(--text-tertiary)] uppercase mb-2 block">Unit (UoM)</label>
+                                <input type="text" value={uom} onChange={e => setUom(e.target.value)} className="w-full bg-[var(--bg-overlay)] border border-[var(--border-secondary)] rounded-xl px-4 py-3.5 text-[var(--text-primary)] outline-none focus:border-emerald-500" placeholder="PCS" />
                             </div>
                             <div className="col-span-2 mt-2">
-                                <label className="flex items-center gap-3 p-4 bg-white/5 rounded-xl border border-white/5 cursor-pointer hover:bg-white/10 transition-colors">
+                                <label className="flex items-center gap-3 p-4 bg-white/5 rounded-xl border border-[var(--border-secondary)] cursor-pointer hover:bg-white/10 transition-colors">
                                     <div className="relative flex items-center">
-                                        <input type="checkbox" checked={isConsumable} onChange={e => setIsConsumable(e.target.checked)} className="peer w-5 h-5 rounded border-slate-600 text-indigo-600 focus:ring-indigo-500 bg-black/50" />
+                                        <input type="checkbox" checked={isConsumable} onChange={e => setIsConsumable(e.target.checked)} className="peer w-5 h-5 rounded border-slate-600 text-indigo-600 focus:ring-indigo-500 bg-[var(--bg-overlay)]" />
                                     </div>
                                     <div>
-                                        <span className="text-white font-bold text-sm block">Is Consumable?</span>
-                                        <span className="text-slate-500 text-xs block">Item is consumed upon usage</span>
+                                        <span className="text-[var(--text-primary)] font-bold text-sm block">Is Consumable?</span>
+                                        <span className="text-[var(--text-tertiary)] text-xs block">Item is consumed upon usage</span>
                                     </div>
                                 </label>
                             </div>
                         </div>
                       </div>
 
-                      <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-5">
+                      <div className="bg-white/[0.02] border border-[var(--border-secondary)] rounded-2xl p-5">
                         <h4 className="text-amber-400 font-bold uppercase tracking-widest text-xs mb-6 flex items-center gap-2">
                             <Briefcase className="w-4 h-4" /> Project & PR
                         </h4>
                         <div className="grid grid-cols-1 gap-4">
                             <div>
-                                <label className="text-xs font-bold text-slate-500 uppercase mb-2 block">WBS Element</label>
-                                <input type="text" value={wbs} onChange={e => setWbs(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3.5 text-white outline-none font-mono focus:border-amber-500" placeholder="WBS-..." />
+                                <label className="text-xs font-bold text-[var(--text-tertiary)] uppercase mb-2 block">WBS Element</label>
+                                <input type="text" value={wbs} onChange={e => setWbs(e.target.value)} className="w-full bg-[var(--bg-overlay)] border border-[var(--border-secondary)] rounded-xl px-4 py-3.5 text-[var(--text-primary)] outline-none font-mono focus:border-amber-500" placeholder="WBS-..." />
                             </div>
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label className="text-xs font-bold text-slate-500 uppercase mb-2 block">PR Number</label>
-                                    <input type="text" value={prNumber} onChange={e => setPrNumber(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3.5 text-white outline-none font-mono focus:border-amber-500" />
+                                    <label className="text-xs font-bold text-[var(--text-tertiary)] uppercase mb-2 block">PR Number</label>
+                                    <input type="text" value={prNumber} onChange={e => setPrNumber(e.target.value)} className="w-full bg-[var(--bg-overlay)] border border-[var(--border-secondary)] rounded-xl px-4 py-3.5 text-[var(--text-primary)] outline-none font-mono focus:border-amber-500" />
                                 </div>
                                 <div>
-                                    <label className="text-xs font-bold text-slate-500 uppercase mb-2 block">PR Status</label>
-                                    <input type="text" value={prStatus} onChange={e => setPrStatus(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3.5 text-white outline-none focus:border-amber-500" placeholder="PENDING" />
+                                    <label className="text-xs font-bold text-[var(--text-tertiary)] uppercase mb-2 block">PR Status</label>
+                                    <input type="text" value={prStatus} onChange={e => setPrStatus(e.target.value)} className="w-full bg-[var(--bg-overlay)] border border-[var(--border-secondary)] rounded-xl px-4 py-3.5 text-[var(--text-primary)] outline-none focus:border-amber-500" placeholder="PENDING" />
                                 </div>
                             </div>
                         </div>
@@ -229,34 +229,34 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
                 </div>
 
                 {/* Section 3: Inventory & Storage */}
-                <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-5">
+                <div className="bg-white/[0.02] border border-[var(--border-secondary)] rounded-2xl p-5">
                     <h4 className="text-purple-400 font-bold uppercase tracking-widest text-xs mb-6 flex items-center gap-2">
                         <Box className="w-4 h-4" /> Storage & Levels
                     </h4>
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                         <div className="md:col-span-1">
-                              <label className="text-xs font-bold text-slate-500 uppercase mb-2 block">SLOC (PK)</label>
+                              <label className="text-xs font-bold text-[var(--text-tertiary)] uppercase mb-2 block">SLOC (PK)</label>
                               <div className="relative">
-                                <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600" />
-                                <input type="text" required disabled={!!initialData} value={sloc} onChange={e => setSloc(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-xl pl-10 pr-4 py-3.5 text-white outline-none font-mono disabled:opacity-50 focus:border-purple-500" placeholder="SLOC" />
+                                <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--text-tertiary)]" />
+                                <input type="text" required disabled={!!initialData} value={sloc} onChange={e => setSloc(e.target.value)} className="w-full bg-[var(--bg-overlay)] border border-[var(--border-secondary)] rounded-xl pl-10 pr-4 py-3.5 text-[var(--text-primary)] outline-none font-mono disabled:opacity-50 focus:border-purple-500" placeholder="SLOC" />
                               </div>
                         </div>
                         <div className="md:col-span-1">
-                              <label className="text-xs font-bold text-slate-500 uppercase mb-2 block">Rack No</label>
-                              <input type="text" value={rackNo} onChange={e => setRackNo(e.target.value)} className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3.5 text-white outline-none font-mono focus:border-purple-500" placeholder="A-01" />
+                              <label className="text-xs font-bold text-[var(--text-tertiary)] uppercase mb-2 block">Rack No</label>
+                              <input type="text" value={rackNo} onChange={e => setRackNo(e.target.value)} className="w-full bg-[var(--bg-overlay)] border border-[var(--border-secondary)] rounded-xl px-4 py-3.5 text-[var(--text-primary)] outline-none font-mono focus:border-purple-500" placeholder="A-01" />
                         </div>
-                        <div className="md:col-span-2 bg-black/20 p-4 rounded-xl border border-white/5 grid grid-cols-3 gap-3">
+                        <div className="md:col-span-2 bg-[var(--bg-overlay)] p-4 rounded-xl border border-[var(--border-secondary)] grid grid-cols-3 gap-3">
                             <div>
-                                <label className="text-[10px] font-bold text-slate-500 uppercase mb-1 block">Min Stock</label>
-                                <input type="number" value={minStock} onChange={e => setMinStock(parseInt(e.target.value))} className="w-full bg-black/50 border border-white/10 rounded-lg px-3 py-2 text-white outline-none font-mono text-sm text-center focus:border-rose-500" />
+                                <label className="text-[10px] font-bold text-[var(--text-tertiary)] uppercase mb-1 block">Min Stock</label>
+                                <input type="number" value={minStock} onChange={e => setMinStock(parseInt(e.target.value))} className="w-full bg-[var(--bg-overlay)] border border-[var(--border-secondary)] rounded-lg px-3 py-2 text-[var(--text-primary)] outline-none font-mono text-sm text-center focus:border-rose-500" />
                             </div>
                             <div>
-                                <label className="text-[10px] font-bold text-slate-500 uppercase mb-1 block">Max Stock</label>
-                                <input type="number" value={maxStock} onChange={e => setMaxStock(parseInt(e.target.value))} className="w-full bg-black/50 border border-white/10 rounded-lg px-3 py-2 text-white outline-none font-mono text-sm text-center focus:border-emerald-500" />
+                                <label className="text-[10px] font-bold text-[var(--text-tertiary)] uppercase mb-1 block">Max Stock</label>
+                                <input type="number" value={maxStock} onChange={e => setMaxStock(parseInt(e.target.value))} className="w-full bg-[var(--bg-overlay)] border border-[var(--border-secondary)] rounded-lg px-3 py-2 text-[var(--text-primary)] outline-none font-mono text-sm text-center focus:border-emerald-500" />
                             </div>
                             <div>
                                 <label className="text-[10px] font-bold text-emerald-400 uppercase mb-1 block">Current</label>
-                                <input type="number" required value={quantity} onChange={e => setQuantity(parseInt(e.target.value))} className="w-full bg-black/80 border border-emerald-500/30 rounded-lg px-3 py-2 text-emerald-400 font-bold outline-none font-mono text-sm text-center" />
+                                <input type="number" required value={quantity} onChange={e => setQuantity(parseInt(e.target.value))} className="w-full bg-[var(--bg-overlay)] border border-emerald-500/30 rounded-lg px-3 py-2 text-emerald-400 font-bold outline-none font-mono text-sm text-center" />
                             </div>
                         </div>
                     </div>
@@ -268,17 +268,17 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
                         <h4 className="text-indigo-300 font-bold uppercase tracking-widest text-xs flex items-center gap-2">
                             <DollarSign className="w-4 h-4" /> Valuation
                         </h4>
-                        <p className="text-slate-500 text-xs mt-1">Set TOTAL asset value (Total Price)</p>
+                        <p className="text-[var(--text-tertiary)] text-xs mt-1">Set TOTAL asset value (Total Price)</p>
                     </div>
                     <div className="w-full md:w-64">
                           <div className="relative">
-                              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-mono text-sm font-bold">
+                              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--text-secondary)] font-mono text-sm font-bold">
                                  {lang === 'id' ? 'Rp' : lang === 'jp' ? '¥' : '$'}
                               </span>
                               <input 
                                 type="number" required step="0.01" 
                                 value={price} onChange={e => setPrice(parseFloat(e.target.value))} 
-                                className="w-full bg-black/50 border border-white/10 rounded-xl pl-12 pr-4 py-4 text-white text-right font-mono text-xl font-bold outline-none focus:border-indigo-500 shadow-inner" 
+                                className="w-full bg-[var(--bg-overlay)] border border-[var(--border-secondary)] rounded-xl pl-12 pr-4 py-4 text-[var(--text-primary)] text-right font-mono text-xl font-bold outline-none focus:border-indigo-500 shadow-inner" 
                                 placeholder="0" 
                               />
                           </div>
@@ -288,11 +288,11 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
         </div>
 
         {/* Footer (Sticky) */}
-        <div className="p-4 md:p-6 border-t border-white/10 bg-[#050505] rounded-b-[2rem] md:rounded-b-3xl z-20 shrink-0 flex flex-col-reverse md:flex-row justify-end gap-3 md:gap-4">
+        <div className="p-4 md:p-6 border-t border-[var(--border-secondary)] bg-[#050505] rounded-b-[2rem] md:rounded-b-3xl z-20 shrink-0 flex flex-col-reverse md:flex-row justify-end gap-3 md:gap-4">
             <button 
                 type="button" 
                 onClick={onClose} 
-                className="w-full md:w-auto px-6 py-3.5 rounded-xl text-slate-400 hover:bg-white/5 font-bold transition-colors text-sm"
+                className="w-full md:w-auto px-6 py-3.5 rounded-xl text-[var(--text-secondary)] hover:bg-white/5 font-bold transition-colors text-sm"
             >
                 {t.cancel}
             </button>
@@ -300,7 +300,7 @@ export const InventoryModal: React.FC<InventoryModalProps> = ({
                 type="submit" 
                 form="inventory-form"
                 disabled={isSaving} 
-                className="w-full md:w-auto px-8 py-3.5 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-500 shadow-[0_0_20px_rgba(79,70,229,0.4)] flex items-center justify-center gap-2 transition-all active:scale-95 disabled:opacity-50 disabled:scale-100 hover:scale-[1.02]"
+                className="w-full md:w-auto px-8 py-3.5 bg-indigo-600 text-[var(--text-primary)] font-bold rounded-xl hover:bg-indigo-500 shadow-[0_0_20px_rgba(79,70,229,0.4)] flex items-center justify-center gap-2 transition-all active:scale-95 disabled:opacity-50 disabled:scale-100 hover:scale-[1.02]"
             >
                 {isSaving ? <Loader2 className="animate-spin w-5 h-5" /> : <Save className="w-5 h-5" />}
                 {initialData ? t.save : t.save}

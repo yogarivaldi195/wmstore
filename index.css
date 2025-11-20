@@ -4,12 +4,44 @@
 
 :root {
   --primary-glow: conic-gradient(from 180deg at 50% 50%, #2a8af6 0deg, #a853ba 180deg, #e92a67 360deg);
+
+  /* Dark Theme (Default) */
+  --bg-primary: #050505;
+  --bg-secondary: #0a0a0a;
+  --bg-tertiary: #0f0f0f;
+  --bg-overlay: rgba(255, 255, 255, 0.02);
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #64748b;
+  --border-primary: rgba(255, 255, 255, 0.1);
+  --border-secondary: rgba(255, 255, 255, 0.05);
+  --glass-bg: rgba(255, 255, 255, 0.02);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --accent-primary: #6366f1;
+  --accent-secondary: #06b6d4;
+}
+
+html[data-theme="light"] {
+  --bg-primary: #f8f9fa;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f3f4f6;
+  --bg-overlay: rgba(51, 65, 85, 0.03);
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-tertiary: #64748b;
+  --border-primary: rgba(51, 65, 85, 0.08);
+  --border-secondary: rgba(51, 65, 85, 0.04);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(51, 65, 85, 0.06);
+  --accent-primary: #4f46e5;
+  --accent-secondary: #0891b2;
 }
 
 body {
-  background-color: #050505;
-  color: #e2e8f0;
-  overflow: hidden; 
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Animated Grid Background */
@@ -19,7 +51,7 @@ body {
   height: 200vh;
   top: -50%;
   left: -50%;
-  background-image: 
+  background-image:
     linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
     linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
   background-size: 50px 50px;
@@ -28,6 +60,12 @@ body {
   z-index: -2;
   pointer-events: none;
   mask-image: radial-gradient(circle at center, black 0%, transparent 70%);
+}
+
+html[data-theme="light"] .grid-bg {
+  background-image:
+    linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
 }
 
 @keyframes grid-move {
@@ -43,13 +81,20 @@ body {
 
 /* Advanced 3D Glass */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--glass-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 
+  border: 1px solid var(--glass-border);
+  box-shadow:
     0 4px 30px rgba(0, 0, 0, 0.1),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    inset 0 0 0 1px var(--glass-border);
+  transition: all 0.3s ease;
+}
+
+html[data-theme="light"] .glass-panel {
+  box-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.05),
+    inset 0 0 0 1px var(--glass-border);
 }
 
 /* 3D Card Hover Effect */

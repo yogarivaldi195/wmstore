@@ -215,8 +215,8 @@ export const StockOpname: React.FC<StockOpnameProps> = ({ setItems, userRole }) 
         <div className="h-[80vh] flex items-center justify-center">
             <div className="glass-panel p-12 text-center">
                 <ShieldAlert className="w-12 h-12 text-rose-500 mx-auto mb-4" />
-                <h2 className="text-2xl font-bold text-white">Access Denied</h2>
-                <p className="text-slate-400">Stock Opname is restricted to authorized personnel.</p>
+                <h2 className="text-2xl font-bold text-[var(--text-primary)]">Access Denied</h2>
+                <p className="text-[var(--text-secondary)]">Stock Opname is restricted to authorized personnel.</p>
             </div>
         </div>
       );
@@ -232,15 +232,15 @@ export const StockOpname: React.FC<StockOpnameProps> = ({ setItems, userRole }) 
           <>
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
                 <div>
-                    <h2 className="text-3xl font-bold text-white font-[Space_Grotesk]">Stock Opname Sessions</h2>
-                    <p className="text-slate-400 text-sm font-mono mt-2">Audit Management & Reconciliation</p>
+                    <h2 className="text-3xl font-bold text-[var(--text-primary)] font-[Space_Grotesk]">Stock Opname Sessions</h2>
+                    <p className="text-[var(--text-secondary)] text-sm font-mono mt-2">Audit Management & Reconciliation</p>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Create New Card */}
-                <div className={`glass-panel p-6 rounded-3xl border ${hasOpenSession ? 'border-slate-700 opacity-80' : 'border-white/10'}`}>
-                    <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <div className={`glass-panel p-6 rounded-3xl border ${hasOpenSession ? 'border-slate-700 opacity-80' : 'border-[var(--border-secondary)]'}`}>
+                    <h3 className="text-xl font-bold text-[var(--text-primary)] mb-4 flex items-center gap-2">
                         <Plus className="w-5 h-5 text-emerald-400" /> New Session
                     </h3>
                     
@@ -256,40 +256,40 @@ export const StockOpname: React.FC<StockOpnameProps> = ({ setItems, userRole }) 
 
                     <form onSubmit={handleCreateSession} className="space-y-4">
                         <div>
-                            <label className="text-xs font-bold text-slate-500 uppercase">Session Title</label>
+                            <label className="text-xs font-bold text-[var(--text-tertiary)] uppercase">Session Title</label>
                             <input 
                                 type="text" required 
                                 value={newTitle} onChange={e => setNewTitle(e.target.value)}
                                 placeholder="e.g., Q1 2024 Audit - Spare Parts"
                                 disabled={hasOpenSession}
-                                className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="w-full bg-[var(--bg-overlay)] border border-[var(--border-secondary)] rounded-xl px-4 py-3 text-[var(--text-primary)] outline-none focus:border-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed"
                             />
                         </div>
                         <div>
-                            <label className="text-xs font-bold text-slate-500 uppercase">Notes</label>
+                            <label className="text-xs font-bold text-[var(--text-tertiary)] uppercase">Notes</label>
                             <textarea 
                                 value={newNotes} onChange={e => setNewNotes(e.target.value)}
                                 disabled={hasOpenSession}
-                                className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-emerald-500 h-24 resize-none disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="w-full bg-[var(--bg-overlay)] border border-[var(--border-secondary)] rounded-xl px-4 py-3 text-[var(--text-primary)] outline-none focus:border-emerald-500 h-24 resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                             ></textarea>
                         </div>
-                        <button disabled={isCreating || hasOpenSession} className="w-full py-3 bg-emerald-600 hover:bg-emerald-500 disabled:bg-slate-700 disabled:text-slate-400 text-white font-bold rounded-xl transition-all flex justify-center items-center gap-2">
+                        <button disabled={isCreating || hasOpenSession} className="w-full py-3 bg-emerald-600 hover:bg-emerald-500 disabled:bg-slate-700 disabled:text-[var(--text-secondary)] text-[var(--text-primary)] font-bold rounded-xl transition-all flex justify-center items-center gap-2">
                             {hasOpenSession ? <Lock className="w-4 h-4" /> : (isCreating ? <Loader2 className="animate-spin" /> : "Start Session")}
                         </button>
                     </form>
                 </div>
 
                 {/* History List */}
-                <div className="lg:col-span-2 glass-panel p-6 rounded-3xl border border-white/10 min-h-[400px]">
-                    <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                <div className="lg:col-span-2 glass-panel p-6 rounded-3xl border border-[var(--border-secondary)] min-h-[400px]">
+                    <h3 className="text-xl font-bold text-[var(--text-primary)] mb-6 flex items-center gap-2">
                         <ClipboardList className="w-5 h-5 text-indigo-400" /> Session History
                     </h3>
                     <div className="space-y-3 overflow-y-auto max-h-[500px] custom-scrollbar pr-2">
                         {sessions.map(session => (
-                            <div key={session.id} className="p-4 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors flex justify-between items-center group">
+                            <div key={session.id} className="p-4 rounded-2xl bg-white/5 border border-[var(--border-secondary)] hover:bg-white/10 transition-colors flex justify-between items-center group">
                                 <div>
-                                    <h4 className="font-bold text-white text-lg">{session.title}</h4>
-                                    <div className="flex gap-4 text-xs text-slate-400 mt-1 font-mono">
+                                    <h4 className="font-bold text-[var(--text-primary)] text-lg">{session.title}</h4>
+                                    <div className="flex gap-4 text-xs text-[var(--text-secondary)] mt-1 font-mono">
                                         <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> {new Date(session.createdAt).toLocaleDateString()}</span>
                                         <span>Items: {session.totalItems}</span>
                                         <span>By: {session.creator}</span>
@@ -299,13 +299,13 @@ export const StockOpname: React.FC<StockOpnameProps> = ({ setItems, userRole }) 
                                     <span className={`px-3 py-1 rounded-lg text-xs font-bold ${session.status === 'COMPLETED' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-amber-500/10 text-amber-400'}`}>
                                         {session.status}
                                     </span>
-                                    <button onClick={() => handleOpenSession(session)} className="p-2 bg-indigo-600/20 text-indigo-400 rounded-xl hover:bg-indigo-600 hover:text-white transition-all">
+                                    <button onClick={() => handleOpenSession(session)} className="p-2 bg-indigo-600/20 text-indigo-400 rounded-xl hover:bg-indigo-600 hover:text-[var(--text-primary)] transition-all">
                                         <ArrowRight className="w-5 h-5" />
                                     </button>
                                 </div>
                             </div>
                         ))}
-                        {sessions.length === 0 && !isLoading && <p className="text-slate-500 text-center py-10">No sessions found.</p>}
+                        {sessions.length === 0 && !isLoading && <p className="text-[var(--text-tertiary)] text-center py-10">No sessions found.</p>}
                     </div>
                 </div>
             </div>
@@ -317,13 +317,13 @@ export const StockOpname: React.FC<StockOpnameProps> = ({ setItems, userRole }) 
           <div className="animate-in fade-in slide-in-from-right-8 duration-500">
               {/* Session Header & Controls */}
               <div className="flex flex-col xl:flex-row items-start xl:items-center gap-4 mb-6">
-                  <button onClick={() => setView('LIST')} className="p-2 bg-white/5 rounded-xl text-slate-400 hover:text-white">
+                  <button onClick={() => setView('LIST')} className="p-2 bg-white/5 rounded-xl text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
                       <ArrowLeft className="w-5 h-5" />
                   </button>
                   
                   <div className="flex-1">
-                      <h2 className="text-2xl font-bold text-white">{currentSession.title}</h2>
-                      <div className="flex items-center gap-3 text-xs text-slate-400 font-mono mt-1">
+                      <h2 className="text-2xl font-bold text-[var(--text-primary)]">{currentSession.title}</h2>
+                      <div className="flex items-center gap-3 text-xs text-[var(--text-secondary)] font-mono mt-1">
                           <span className={`px-2 py-0.5 rounded ${currentSession.status === 'OPEN' ? 'bg-amber-500/10 text-amber-400' : 'bg-emerald-500/10 text-emerald-400'}`}>{currentSession.status}</span>
                           <span>ID: {currentSession.id.substring(0,8)}...</span>
                           <span>Created: {new Date(currentSession.createdAt).toLocaleDateString()}</span>
@@ -334,7 +334,7 @@ export const StockOpname: React.FC<StockOpnameProps> = ({ setItems, userRole }) 
                       <button 
                         onClick={handleExportExcel}
                         disabled={isLoading}
-                        className="flex-1 xl:flex-none px-5 py-3 bg-emerald-700/80 hover:bg-emerald-600 text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg"
+                        className="flex-1 xl:flex-none px-5 py-3 bg-emerald-700/80 hover:bg-emerald-600 text-[var(--text-primary)] font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg"
                       >
                         {isLoading ? <Loader2 className="animate-spin w-4 h-4" /> : <FileSpreadsheet className="w-5 h-5" />}
                         Export Excel
@@ -344,13 +344,13 @@ export const StockOpname: React.FC<StockOpnameProps> = ({ setItems, userRole }) 
                           <>
                               <button 
                                 onClick={handleSaveDraft}
-                                className="flex-1 xl:flex-none px-5 py-3 bg-white/5 hover:bg-white/10 text-white font-bold rounded-xl flex items-center justify-center gap-2"
+                                className="flex-1 xl:flex-none px-5 py-3 bg-white/5 hover:bg-white/10 text-[var(--text-primary)] font-bold rounded-xl flex items-center justify-center gap-2"
                               >
                                   <Save className="w-5 h-5" /> Save Draft
                               </button>
                               <button 
                                 onClick={handleFinalize}
-                                className="flex-1 xl:flex-none px-5 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-lg flex items-center justify-center gap-2"
+                                className="flex-1 xl:flex-none px-5 py-3 bg-indigo-600 hover:bg-indigo-500 text-[var(--text-primary)] font-bold rounded-xl shadow-lg flex items-center justify-center gap-2"
                               >
                                   <CheckCircle2 className="w-5 h-5" /> Finalize
                               </button>
@@ -361,18 +361,18 @@ export const StockOpname: React.FC<StockOpnameProps> = ({ setItems, userRole }) 
 
               {/* KPI Dashboard */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                  <div className="glass-panel p-4 rounded-2xl border border-white/5 flex flex-col">
-                      <span className="text-slate-400 text-xs font-bold uppercase mb-1">Progress</span>
+                  <div className="glass-panel p-4 rounded-2xl border border-[var(--border-secondary)] flex flex-col">
+                      <span className="text-[var(--text-secondary)] text-xs font-bold uppercase mb-1">Progress</span>
                       <div className="flex items-end gap-2">
-                          <span className="text-2xl font-bold text-white">{progressPercentage}%</span>
+                          <span className="text-2xl font-bold text-[var(--text-primary)]">{progressPercentage}%</span>
                           <PieChart className="w-5 h-5 text-indigo-400 mb-1" />
                       </div>
                       <div className="w-full bg-white/5 h-1 mt-2 rounded-full overflow-hidden">
                           <div className="bg-indigo-500 h-full transition-all duration-500" style={{ width: `${progressPercentage}%` }}></div>
                       </div>
                   </div>
-                  <div className="glass-panel p-4 rounded-2xl border border-white/5 flex flex-col">
-                      <span className="text-slate-400 text-xs font-bold uppercase mb-1">Accuracy</span>
+                  <div className="glass-panel p-4 rounded-2xl border border-[var(--border-secondary)] flex flex-col">
+                      <span className="text-[var(--text-secondary)] text-xs font-bold uppercase mb-1">Accuracy</span>
                       <div className="flex items-end gap-2">
                           <span className="text-2xl font-bold text-emerald-400">
                              {stats.counted > 0 ? Math.round((stats.matched / stats.counted) * 100) : 100}%
@@ -380,15 +380,15 @@ export const StockOpname: React.FC<StockOpnameProps> = ({ setItems, userRole }) 
                           <Activity className="w-5 h-5 text-emerald-400 mb-1" />
                       </div>
                   </div>
-                  <div className="glass-panel p-4 rounded-2xl border border-white/5 flex flex-col">
-                      <span className="text-slate-400 text-xs font-bold uppercase mb-1">Items Counted</span>
+                  <div className="glass-panel p-4 rounded-2xl border border-[var(--border-secondary)] flex flex-col">
+                      <span className="text-[var(--text-secondary)] text-xs font-bold uppercase mb-1">Items Counted</span>
                       <div className="flex items-end gap-2">
-                          <span className="text-2xl font-bold text-white">{stats.counted}</span>
-                          <span className="text-sm text-slate-500 mb-1">/ {stats.total}</span>
+                          <span className="text-2xl font-bold text-[var(--text-primary)]">{stats.counted}</span>
+                          <span className="text-sm text-[var(--text-tertiary)] mb-1">/ {stats.total}</span>
                       </div>
                   </div>
-                  <div className="glass-panel p-4 rounded-2xl border border-white/5 flex flex-col">
-                      <span className="text-slate-400 text-xs font-bold uppercase mb-1">Variance Detected</span>
+                  <div className="glass-panel p-4 rounded-2xl border border-[var(--border-secondary)] flex flex-col">
+                      <span className="text-[var(--text-secondary)] text-xs font-bold uppercase mb-1">Variance Detected</span>
                       <div className="flex items-end gap-2">
                           <span className="text-2xl font-bold text-rose-400">{stats.variance}</span>
                           <AlertOctagon className="w-5 h-5 text-rose-400 mb-1" />
@@ -396,54 +396,54 @@ export const StockOpname: React.FC<StockOpnameProps> = ({ setItems, userRole }) 
                   </div>
               </div>
 
-              <div className="glass-panel rounded-3xl overflow-hidden border border-white/10">
+              <div className="glass-panel rounded-3xl overflow-hidden border border-[var(--border-secondary)]">
                   {/* Toolbar & Filters */}
-                  <div className="p-4 border-b border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 bg-black/20">
+                  <div className="p-4 border-b border-[var(--border-secondary)] flex flex-col md:flex-row justify-between items-center gap-4 bg-[var(--bg-overlay)]">
                       <div className="flex items-center gap-4 w-full md:w-auto">
                           <div className="relative flex-1 md:flex-none">
-                              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--text-tertiary)]" />
                               <input 
                                 type="text" 
                                 placeholder="Search material..." 
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="bg-black/40 border border-white/10 rounded-lg pl-9 pr-4 py-2 text-sm text-white outline-none focus:border-indigo-500 w-full md:w-64" 
+                                className="bg-[var(--bg-overlay)] border border-[var(--border-secondary)] rounded-lg pl-9 pr-4 py-2 text-sm text-[var(--text-primary)] outline-none focus:border-indigo-500 w-full md:w-64" 
                               />
                           </div>
                           
-                          <div className="flex bg-black/40 rounded-lg p-1 border border-white/10">
+                          <div className="flex bg-[var(--bg-overlay)] rounded-lg p-1 border border-[var(--border-secondary)]">
                               <button 
                                 onClick={() => setStatusFilter('ALL')}
-                                className={`px-3 py-1 rounded text-xs font-bold transition-all ${statusFilter === 'ALL' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'}`}
+                                className={`px-3 py-1 rounded text-xs font-bold transition-all ${statusFilter === 'ALL' ? 'bg-indigo-600 text-[var(--text-primary)]' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}`}
                               >
                                   All
                               </button>
                               <button 
                                 onClick={() => setStatusFilter('UNCOUNTED')}
-                                className={`px-3 py-1 rounded text-xs font-bold transition-all ${statusFilter === 'UNCOUNTED' ? 'bg-amber-600 text-white' : 'text-slate-400 hover:text-white'}`}
+                                className={`px-3 py-1 rounded text-xs font-bold transition-all ${statusFilter === 'UNCOUNTED' ? 'bg-amber-600 text-[var(--text-primary)]' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}`}
                               >
                                   Uncounted
                               </button>
                               <button 
                                 onClick={() => setStatusFilter('COUNTED')}
-                                className={`px-3 py-1 rounded text-xs font-bold transition-all ${statusFilter === 'COUNTED' ? 'bg-emerald-600 text-white' : 'text-slate-400 hover:text-white'}`}
+                                className={`px-3 py-1 rounded text-xs font-bold transition-all ${statusFilter === 'COUNTED' ? 'bg-emerald-600 text-[var(--text-primary)]' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}`}
                               >
                                   Counted
                               </button>
                           </div>
                       </div>
 
-                      <div className="flex items-center gap-4 text-sm text-slate-400 w-full md:w-auto justify-end">
-                          <button onClick={() => setPage(p => Math.max(1, p-1))} disabled={page===1} className="hover:text-white disabled:opacity-30"><ChevronLeft className="w-5 h-5" /></button>
+                      <div className="flex items-center gap-4 text-sm text-[var(--text-secondary)] w-full md:w-auto justify-end">
+                          <button onClick={() => setPage(p => Math.max(1, p-1))} disabled={page===1} className="hover:text-[var(--text-primary)] disabled:opacity-30"><ChevronLeft className="w-5 h-5" /></button>
                           <span>Page {page} of {Math.ceil(totalItems / pageSize) || 1}</span>
-                          <button onClick={() => setPage(p => p+1)} disabled={page >= Math.ceil(totalItems / pageSize)} className="hover:text-white disabled:opacity-30"><ChevronRight className="w-5 h-5" /></button>
+                          <button onClick={() => setPage(p => p+1)} disabled={page >= Math.ceil(totalItems / pageSize)} className="hover:text-[var(--text-primary)] disabled:opacity-30"><ChevronRight className="w-5 h-5" /></button>
                       </div>
                   </div>
 
                   {/* Table */}
                   <div className="overflow-x-auto">
                     <table className="w-full text-left text-sm">
-                        <thead className="bg-black/40 text-xs uppercase text-slate-400 font-bold">
+                        <thead className="bg-[var(--bg-overlay)] text-xs uppercase text-[var(--text-secondary)] font-bold">
                             <tr>
                                 <th className="px-6 py-4">Material Info</th>
                                 <th className="px-6 py-4">SLOC</th>
@@ -461,11 +461,11 @@ export const StockOpname: React.FC<StockOpnameProps> = ({ setItems, userRole }) 
                                 return (
                                     <tr key={item.id} className={`hover:bg-white/5 ${item.isCounted ? 'bg-indigo-900/5' : ''}`}>
                                         <td className="px-6 py-4">
-                                            <div className="font-bold text-white">{item.materialDesc}</div>
-                                            <div className="text-xs text-slate-500 font-mono">{item.materialNo}</div>
+                                            <div className="font-bold text-[var(--text-primary)]">{item.materialDesc}</div>
+                                            <div className="text-xs text-[var(--text-tertiary)] font-mono">{item.materialNo}</div>
                                         </td>
-                                        <td className="px-6 py-4 font-mono text-slate-300">{item.sloc}</td>
-                                        <td className="px-6 py-4 text-center font-mono font-bold text-slate-400">
+                                        <td className="px-6 py-4 font-mono text-[var(--text-primary)]">{item.sloc}</td>
+                                        <td className="px-6 py-4 text-center font-mono font-bold text-[var(--text-secondary)]">
                                             {item.systemQty}
                                         </td>
                                         <td className="px-6 py-4 text-center bg-indigo-900/5">
@@ -475,10 +475,10 @@ export const StockOpname: React.FC<StockOpnameProps> = ({ setItems, userRole }) 
                                                 value={item.isCounted ? item.physicalQty : ''}
                                                 placeholder="-"
                                                 onChange={(e) => handleCountChange(item.id, e.target.value)}
-                                                className={`w-24 bg-black/50 border border-white/20 rounded-lg py-2 text-center text-white font-bold outline-none focus:border-indigo-500 focus:bg-black/80 ${item.isCounted ? 'border-indigo-500/50' : ''}`}
+                                                className={`w-24 bg-[var(--bg-overlay)] border border-[var(--border-secondary)] rounded-lg py-2 text-center text-[var(--text-primary)] font-bold outline-none focus:border-indigo-500 focus:bg-[var(--bg-overlay)] ${item.isCounted ? 'border-indigo-500/50' : ''}`}
                                             />
                                         </td>
-                                        <td className={`px-6 py-4 text-center font-mono font-bold ${variance === 0 ? 'text-slate-600' : variance < 0 ? 'text-rose-400' : 'text-emerald-400'}`}>
+                                        <td className={`px-6 py-4 text-center font-mono font-bold ${variance === 0 ? 'text-[var(--text-tertiary)]' : variance < 0 ? 'text-rose-400' : 'text-emerald-400'}`}>
                                             {item.isCounted ? (variance > 0 ? `+${variance}` : variance) : '-'}
                                         </td>
                                         <td className="px-6 py-4 text-center">
@@ -486,19 +486,19 @@ export const StockOpname: React.FC<StockOpnameProps> = ({ setItems, userRole }) 
                                                 isMatched ? <span className="text-emerald-500 text-xs flex items-center justify-center gap-1"><CheckCircle2 className="w-3 h-3" /> Match</span> 
                                                 : <span className="text-rose-500 text-xs flex items-center justify-center gap-1"><AlertOctagon className="w-3 h-3" /> Diff</span>
                                             ) : (
-                                                <span className="text-slate-600 text-xs bg-white/5 px-2 py-1 rounded border border-white/5">Pending</span>
+                                                <span className="text-[var(--text-tertiary)] text-xs bg-white/5 px-2 py-1 rounded border border-[var(--border-secondary)]">Pending</span>
                                             )}
                                         </td>
                                     </tr>
                                 );
                             })}
                             {sessionItems.length === 0 && !isLoading && (
-                                <tr><td colSpan={6} className="text-center py-8 text-slate-500">No items match your filters.</td></tr>
+                                <tr><td colSpan={6} className="text-center py-8 text-[var(--text-tertiary)]">No items match your filters.</td></tr>
                             )}
                         </tbody>
                     </table>
                   </div>
-                  {isLoading && <div className="p-4 text-center text-slate-400 flex justify-center gap-2"><Loader2 className="animate-spin" /> Loading Data...</div>}
+                  {isLoading && <div className="p-4 text-center text-[var(--text-secondary)] flex justify-center gap-2"><Loader2 className="animate-spin" /> Loading Data...</div>}
               </div>
           </div>
       )}
